@@ -1,0 +1,80 @@
+TP carre magique:
+ALGORITHME: CarreMagique
+//BUT : Afficher un carré magique
+//ENTREE: /
+//SORTIE : Le carré magique
+
+CONST : tTableau : 5
+
+VAR : carre : Tableau : de 1 à tTableau ENTIER de 1 à tTableau ENTIER
+i, j : ENTIER
+
+DEBUT 
+
+	POUR i de 1 à tTableau FAIRE
+	
+		POUR j de 1 à tTableau FAIRE
+		
+			carre[i][j] <- 0
+			
+		FINPOUR
+	FINPOUR
+	
+	i <- tTableau / 2 + 1
+	j <- tTableau / 2 
+	comp <- 1
+	
+	TANTQUE comp <= tTableau * tTableau FAIRE
+		SI carre[i][j] <> 0 ALORS
+		
+			carre[i][j] <- comp
+			comp <- comp + 1
+			
+			SI i < tTableau ET j < tTableau ALORS
+			
+				i <- i - 1
+				j <- j + 1
+			SINON
+			
+				SI i = tTableau ALORS
+				
+					i <- 1
+					j <- j + 1 
+				SINON
+				
+					i <- i - 1
+					j <- 1
+				FINSI
+			FINSI
+			
+		SINON
+		
+			SI i < tTableau ET j > 1 ALORS
+			
+				i <- i - 1
+				j <- j - 1
+			SINON
+			
+				SI i = tTableau ALORS
+				
+					i <- 1
+					j <- j - 1
+				SINON
+				
+					i <- i - 1
+					j <- tTableau
+				FINSI
+			FINSI
+		FINSI
+	FINTANTQUE
+	
+	POUR i de 1 à tTableau FAIRE
+		POUR j de 1 à tTableau FAIRE
+			
+			ECRIRE carre[i][j]
+		FINPOUR
+		//Retour à la ligne
+		ECRIRE
+	FINPOUR
+FIN
+

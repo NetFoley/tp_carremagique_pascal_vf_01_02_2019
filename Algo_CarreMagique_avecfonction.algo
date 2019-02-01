@@ -1,0 +1,118 @@
+TP carre magique:
+ALGORITHME: CarreMagique
+//BUT : Afficher un carré magique
+//ENTREE: /
+//SORTIE : Le carré magique
+
+CONST : tTableau : 5
+
+VAR : carre : Tableau : de 1 à tTableau ENTIER de 1 à tTableau ENTIER
+i, j : ENTIER
+
+FONCTION ZeroTableau( taille : ENTIER )
+//BUT: Mettre toutes les valeurs d'un tableau à 0
+//ENTREE : Taille du tableau
+//SORTIE : Le tableau remplie de 0
+
+VAR : i, j : ENTIER
+	tab : Tableau de 1 à taille, de 1 à taille : ENTIER
+
+DEBUT
+	POUR i de 1 à taille FAIRE
+		POUR j de 1 à taille FAIRE
+			tab[i][j] <- 0
+		FINPOUR
+	FINPOUR
+	
+	ZeroTableau <- tab
+FIN
+
+FONCTION RemplirTableau ( taille : ENTIER )
+//BUT: Remplir un tableau pour en faire un carre magique
+//ENTREE : taille du tableau
+//SORTIE : Un tableau remplie
+
+VAR : x,y,comp : ENTIER
+	tab : Tableau de 1 à taille, de 1 à taille : ENTIER
+
+DEBUT
+	y <- taille / 2 + 1
+	x <- taille / 2
+	comp <- 1
+	
+	TANTQUE comp <= taille * taille FAIRE
+		SI carre[y][x] <> 0 ALORS
+		
+			carre[y][x] <- comp
+			comp <- comp + 1
+			
+			SI y < taille ET x < taille ALORS
+			
+				y <- y - 1
+				x <- x + 1
+			SINON
+			
+				SI y = taille ALORS
+				
+					y <- 1
+					x <- x + 1 
+				SINON
+				
+					y <- y - 1
+					x <- 1
+				FINSI
+			FINSI
+			
+		SINON
+		
+			SI y < taille ET x > 1 ALORS
+			
+				y <- y - 1
+				x <- x - 1
+			SINON
+			
+				SI y = taille ALORS
+				
+					y <- 1
+					x <- x - 1
+				SINON
+				
+					y <- y - 1
+					x <- taille
+				FINSI
+			FINSI
+		FINSI
+	FINTANTQUE	
+FIN
+
+PROCEDURE afficherTableau( taille : ENTIER , tab : Tableau de 1 à taille, de 1 à taille : ENTIER )
+//BUT : Afficher toutes les valeurs d'un tableau
+//ENTREE : Taille du tableau et son adresse
+//SORTIE : Toutes les valeurs du tableau
+
+VAR : i,j : ENTIER
+
+DEBUT 
+
+POUR i de 1 à tTableau FAIRE
+		POUR j de 1 à tTableau FAIRE
+			
+			ECRIRE carre[i][j]
+			
+		FINPOUR
+		//Retour à la ligne
+		ECRIRE
+	FINPOUR
+	
+FIN
+
+DEBUT 
+
+	carre <- ZeroTableau(tTableau)
+	
+	carre <- RemplirTableau(tTableau)
+	
+	afficherTableau(tTableau, carre)
+	
+FIN
+
